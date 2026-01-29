@@ -1,0 +1,72 @@
+- label: "'Status'"
+  chart: "'online-short'"
+  type: "'overview-dot'"
+- type: "'summon-button'"
+  parameters:
+    - VirtualParameters.PPPUsername
+    - InternetGatewayDevice.WANDevice.1.WANCommonInterfaceConfig.WANAccessType
+    - VirtualParameters.OpticalRXPower
+    - VirtualParameters.OpticalTemperature
+    - VirtualParameters.IP-WANPPP
+    - VirtualParameters.WANBridge
+    - VirtualParameters.TotalStations
+    - VirtualParameters.SLAPercentage
+    - InternetGatewayDevice.DeviceInfo.HardwareVersion
+    - InternetGatewayDevice.DeviceInfo.SoftwareVersion
+    - InternetGatewayDevice.LANDevice.1.Hosts.HostNumberOfEntries
+    - DeviceID.Manufacturer
+    - DeviceID.SerialNumber
+- label: "'PPP Username'"
+  parameter: VirtualParameters.PPPUsername
+  type: "'device-link'"
+  components:
+    - type: "'parameter'"
+- chart: "'optical-rx-power-short'"
+  type: "'overview-dot'"
+- label: "'RX dBm'"
+  parameter: VirtualParameters.OpticalRXPower
+- chart: "'optical-temperature-short'"
+  type: "'overview-dot'"
+- label: "'Temp °C'"
+  parameter: VirtualParameters.OpticalTemperature
+- label: "'PPP IP'"
+  parameter: VirtualParameters.IP-WANPPP
+  type: "'container'"
+  components:
+    type: VirtualParameters.IP-WANPPP
+  element:
+    tag: "'a'"
+    attributes:
+      href: "'http://' || VirtualParameters.IP-WANPPP"
+      target: "'_blank'"
+- label: "'Stations'"
+  parameter: VirtualParameters.TotalStations
+- label: "'Host'"
+  parameter: InternetGatewayDevice.LANDevice.1.Hosts.HostNumberOfEntries
+- label: "'WAN Bridge'"
+  parameter: VirtualParameters.WANBridge
+- label: "'Access Type'"
+  parameter: InternetGatewayDevice.WANDevice.1.WANCommonInterfaceConfig.WANAccessType
+- label: "'Tags'"
+  parameter: Tags
+  type: "'tags'"
+  unsortable: false
+  writable: true
+- label: "'Registered'"
+  parameter: Events.Registered
+- element: "'span.inform'"
+  label: "'Last inform'"
+  parameter: DATE_STRING(Events.Inform)
+  type: "'container'"
+  components:
+    - type: "'parameter'"
+- label: "'Manufacturer'"
+  parameter: DeviceID.Manufacturer
+- label: "'Product class'"
+  parameter: DeviceID.ProductClass
+- label: "'HW version'"
+  parameter: InternetGatewayDevice.DeviceInfo.HardwareVersion
+- label: "'SW version'"
+  parameter: InternetGatewayDevice.DeviceInfo.SoftwareVersion
+- label: "'Serial number'"
+  parameter: DeviceID.SerialNumber

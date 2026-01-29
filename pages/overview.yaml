@@ -1,0 +1,18 @@
+group02:
+  label: "''"
+  charts:
+    - "'device-uptime'"
+    - "'total-stations'"
+group03:
+  label: "''"
+  charts:
+    - "'product-class'"
+    - "'manufacturer'"
+group01:
+  label: "''"
+  charts:
+    - "'online'"
+    - "'registered'"
+    - "'access-type'"
+    - "'optical-rx-power'"
+    - "'optical-temperature'"

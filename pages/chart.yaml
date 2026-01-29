@@ -1,0 +1,360 @@
+access-type:
+  label: "'Access Type'"
+  slices:
+    epon:
+      color: "'#42f566'"
+      filter: InternetGatewayDevice.WANDevice.1.WANCommonInterfaceConfig.WANAccessType
+        = "EPON"
+      label: "'EPON'"
+    ethernet:
+      color: "'#00214a'"
+      filter: InternetGatewayDevice.WANDevice.1.WANCommonInterfaceConfig.WANAccessType
+        = "Ethernet"
+      label: "'Ethernet'"
+    gpon:
+      color: "'#e0a102'"
+      filter: InternetGatewayDevice.WANDevice.1.WANCommonInterfaceConfig.WANAccessType
+        = "GPON"
+      label: "'GPON'"
+optical-rx-power-short:
+  label: "'RX Power'"
+  slices:
+    0_rxNa:
+      color: "'#ffffff'"
+      filter: VirtualParameters.OpticalRXPower = "N/A"
+    1_rxGood:
+      color: "'#1fde5a'"
+      filter: VirtualParameters.OpticalRXPower > -20 AND
+        VirtualParameters.OpticalRXPower <> "N/A"
+    2_rxOk:
+      color: "'#f28f00'"
+      filter: VirtualParameters.OpticalRXPower <= -20 AND
+        VirtualParameters.OpticalRXPower >= -25
+    3_rxBad:
+      color: "'#ff5252'"
+      filter: VirtualParameters.OpticalRXPower < -25 AND
+        VirtualParameters.OpticalRXPower <> "N/A"
+optical-temperature-short:
+  label: "'Optical Temperature'"
+  slices:
+    0_tempNa:
+      color: "'#ffffff'"
+      filter: VirtualParameters.OpticalTemperature = "N/A"
+    1_Good:
+      color: "'#1fde5a'"
+      filter: VirtualParameters.OpticalTemperature < 45 AND
+        VirtualParameters.OpticalTemperature <> "N/A"
+    2_Ok:
+      color: "'#f28f00'"
+      filter: VirtualParameters.OpticalTemperature >= 45 AND
+        VirtualParameters.OpticalTemperature <= 60
+    3_Bad:
+      color: "'#ff5252'"
+      filter: VirtualParameters.OpticalTemperature > 60 AND
+        VirtualParameters.OpticalTemperature <> "N/A"
+online-short:
+  label: "'Online status'"
+  slices:
+    0_onlineNow:
+      color: "'#1fde5a'"
+      filter: Events.Inform > NOW() - 30 * 60 * 1000
+    1_past1h:
+      color: "'#d1de1f'"
+      filter: Events.Inform <= NOW() - 30 * 60 * 1000 AND Events.Inform > NOW() - 60 *
+        60 * 1000
+    2_past24h:
+      color: "'#f28f00'"
+      filter: Events.Inform <= NOW() - 60 * 60 * 1000 AND Events.Inform > NOW() - 24 *
+        60 * 60 * 1000
+    3_past30d:
+      color: "'#ff5252'"
+      filter: Events.Inform <= NOW() - 24 * 60 * 60 * 1000 AND Events.Inform > NOW() -
+        30 * 24 * 60 * 60 * 1000
+    4_older:
+      color: "'#7b1fa2'"
+      filter: Events.Inform <= NOW() - 30 * 24 * 60 * 60 * 1000
+optical-rx-power:
+  label: "'RX Power'"
+  slices:
+    0_rxNa:
+      color: "'#ffffff'"
+      filter: VirtualParameters.OpticalRXPower = "N/A"
+      label: "'N/A'"
+    1_rxGood:
+      color: "'#1fde5a'"
+      filter: VirtualParameters.OpticalRXPower > -20 AND
+        VirtualParameters.OpticalRXPower <> "N/A"
+      label: "'Good'"
+    2_rxOk:
+      color: "'#f28f00'"
+      filter: VirtualParameters.OpticalRXPower <= -20 AND
+        VirtualParameters.OpticalRXPower >= -25
+      label: "'Ok'"
+    3_rxBad:
+      color: "'#ff5252'"
+      filter: VirtualParameters.OpticalRXPower < -25 AND
+        VirtualParameters.OpticalTemperature <> "N/A"
+      label: "'Bad'"
+optical-temperature:
+  label: "'Optical Temperature'"
+  slices:
+    0_tempNa:
+      color: "'#ffffff'"
+      filter: VirtualParameters.OpticalTemperature = "N/A"
+      label: "'N/A'"
+    1_Good:
+      color: "'#1fde5a'"
+      filter: VirtualParameters.OpticalTemperature < 45 AND
+        VirtualParameters.OpticalTemperature <> "N/A"
+      label: "'Cool'"
+    2_Ok:
+      color: "'#f28f00'"
+      filter: VirtualParameters.OpticalTemperature >= 45 AND
+        VirtualParameters.OpticalTemperature <= 60
+      label: "'Warm'"
+    3_Bad:
+      color: "'#ff5252'"
+      filter: VirtualParameters.OpticalTemperature > 60 AND
+        VirtualParameters.OpticalTemperature <> "N/A"
+      label: "'Hot'"
+total-stations:
+  label: "'Total Stations'"
+  slices:
+    0_Free:
+      color: "'#ffffff'"
+      filter: VirtualParameters.TotalStations < 1
+      label: "'0 Stations'"
+    1_Light:
+      color: "'#1fde5a'"
+      filter: VirtualParameters.TotalStations >= 1 AND VirtualParameters.TotalStations
+        <= 5
+      label: "'1-5 Stations'"
+    2_Ok:
+      color: "'#f28f00'"
+      filter: VirtualParameters.TotalStations >= 6 AND VirtualParameters.TotalStations
+        <= 10
+      label: "'6-10 Stations'"
+    3_Crowded:
+      color: "'#ff5252'"
+      filter: VirtualParameters.TotalStations > 10
+      label: "'10+ Stations'"
+device-uptime:
+  label: "'Device Uptime'"
+  slices:
+    0_under1h:
+      color: "'#1fde5a'"
+      filter: InternetGatewayDevice.DeviceInfo.UpTime <= 3600
+      label: "'Uptime <1h'"
+    1_under1d:
+      color: "'#d1de1f'"
+      filter: InternetGatewayDevice.DeviceInfo.UpTime > 3600 AND
+        InternetGatewayDevice.DeviceInfo.UpTime <= 86400
+      label: "'Uptime <1d'"
+    2_under1w:
+      color: "'#f28f00'"
+      filter: InternetGatewayDevice.DeviceInfo.UpTime > 86400 AND
+        InternetGatewayDevice.DeviceInfo.UpTime <= 604800
+      label: "'Uptime <1w'"
+    3_under1mo:
+      color: "'#ff5252'"
+      filter: InternetGatewayDevice.DeviceInfo.UpTime > 604800 AND
+        InternetGatewayDevice.DeviceInfo.UpTime <= 2592000
+      label: "'Uptime <1mo'"
+    4_over1mo:
+      color: "'#7b1fa2'"
+      filter: InternetGatewayDevice.DeviceInfo.UpTime > 2592000
+      label: "'Uptime >1mo'"
+online:
+  label: "'Last Inform'"
+  slices:
+    0_onlineNow:
+      color: "'#1fde5a'"
+      filter: Events.Inform > NOW() - 30 * 60 * 1000
+      label: "'Online'"
+    1_past1h:
+      color: "'#d1de1f'"
+      filter: Events.Inform <= NOW() - 30 * 60 * 1000 AND Events.Inform > NOW() - 60 *
+        60 * 1000
+      label: "'Offline >30m'"
+    2_past24h:
+      color: "'#f28f00'"
+      filter: Events.Inform <= NOW() - 60 * 60 * 1000 AND Events.Inform > NOW() - 24 *
+        60 * 60 * 1000
+      label: "'Offline >1h'"
+    3_past30d:
+      color: "'#ff5252'"
+      filter: Events.Inform <= NOW() - 24 * 60 * 60 * 1000 AND Events.Inform > NOW() -
+        30 * 24 * 60 * 60 * 1000
+      label: "'Offline >1d'"
+    4_older:
+      color: "'#7b1fa2'"
+      filter: Events.Inform <= NOW() - 30 * 24 * 60 * 60 * 1000
+      label: "'Offline >30d'"
+registered:
+  label: "'Registered'"
+  slices:
+    0_recent10m:
+      color: "'#1fde5a'"
+      filter: Events.Registered > NOW() - 10 * 60 * 1000
+      label: "'Registered <10m'"
+    1_past1h:
+      color: "'#d1de1f'"
+      filter: Events.Registered <= NOW() - 10 * 60 * 1000 AND Events.Registered >
+        NOW() - 60 * 60 * 1000
+      label: "'Registered <1h'"
+    2_past24h:
+      color: "'#f28f00'"
+      filter: Events.Registered <= NOW() - 60 * 60 * 1000 AND Events.Registered >
+        NOW() - 24 * 60 * 60 * 1000
+      label: "'Registered <24h'"
+    3_past30d:
+      color: "'#ff5252'"
+      filter: Events.Registered <= NOW() - 24 * 60 * 60 * 1000 AND Events.Registered >
+        NOW() - 30 * 24 * 60 * 60 * 1000
+      label: "'Registered <30d'"
+    4_older:
+      color: "'#7b1fa2'"
+      filter: Events.Registered <= NOW() - 30 * 24 * 60 * 60 * 1000
+      label: "'Registered >30d'"
+manufacturer:
+  label: "'Manufacturer'"
+  slices:
+    CIOT:
+      color: "'#42f566'"
+      filter: VirtualParameters.KnownManufacturer = "CIOT"
+      label: "'CIOT'"
+    C-Data:
+      color: "'#708090'"
+      filter: VirtualParameters.KnownManufacturer = "C-Data"
+      label: "'C-Data'"
+    CMDC:
+      color: "'#0266e0'"
+      filter: VirtualParameters.KnownManufacturer = "CMDC"
+      label: "'CMDC'"
+    FiberHome:
+      color: "'#d32f2f'"
+      filter: VirtualParameters.KnownManufacturer = "FiberHome"
+      label: "'FiberHome'"
+    GGCL:
+      color: "'#0b4a00'"
+      filter: VirtualParameters.KnownManufacturer = "GGCL"
+      label: "'GGCL'"
+    Huawei:
+      color: "'#4287f5'"
+      filter: VirtualParameters.KnownManufacturer = "Huawei Technologies Co., Ltd"
+      label: "'Huawei'"
+    Nokia:
+      color: "'#00008b'"
+      filter: VirtualParameters.KnownManufacturer = "Nokia"
+      label: "'Nokia'"
+    Tenda:
+      color: "'#ff4500'"
+      filter: VirtualParameters.KnownManufacturer = "Tenda"
+      label: "'Tenda'"
+    VSOL:
+      color: "'#8b4513'"
+      filter: VirtualParameters.KnownManufacturer = "VSOL"
+      label: "'VSOL'"
+    Zhongli:
+      color: "'#696969'"
+      filter: VirtualParameters.KnownManufacturer = "Zhongli"
+      label: "'Zhongli'"
+    Other:
+      color: "'#ffffff'"
+      filter: VirtualParameters.KnownManufacturer = "Other"
+      label: "'Other'"
+    ZIONCOM:
+      color: "'#00214a'"
+      filter: VirtualParameters.KnownManufacturer = "ZIONCOM"
+      label: "'ZIONCOM'"
+    ZTE:
+      color: "'#e0a102'"
+      filter: VirtualParameters.KnownManufacturer = "ZTE"
+      label: "'ZTE'"
+    Alcatel-Lucent:
+      color: "'#0000cd'"
+      filter: VirtualParameters.KnownManufacturer = "Alcatel-Lucent"
+      label: "'Alcatel'"
+product-class:
+  label: "'Product Class'"
+  slices:
+    F663NV9:
+      color: "'#e0a101'"
+      filter: VirtualParameters.KnownProductClass = "F663NV9"
+      label: "'F663NV9'"
+    G663-XPON:
+      color: "'#0b4a00'"
+      filter: VirtualParameters.KnownProductClass = "G663-XPON"
+      label: "'G663-XPON'"
+    GM220-S:
+      color: "'#42f566'"
+      filter: VirtualParameters.KnownProductClass = "GM220-S"
+      label: "'GM220-S'"
+    GM630:
+      color: "'#42f5bc'"
+      filter: VirtualParameters.KnownProductClass = "GM630"
+      label: "'GM630'"
+    H1s-3:
+      color: "'#0266e0'"
+      filter: VirtualParameters.KnownProductClass = "H1s-3"
+      label: "'H1s-3'"
+    HG8245A:
+      color: "'#428700'"
+      filter: VirtualParameters.KnownProductClass = "HG8245A"
+      label: "'HG8245A'"
+    HS8145C5:
+      color: "'#4287f5'"
+      filter: VirtualParameters.KnownProductClass = "HS8145C5"
+      label: "'HS8145C5'"
+    EG8141H5:
+      color: "'#00ced1'"
+      filter: VirtualParameters.KnownProductClass = "EG8141H5"
+      label: "'EG8141H5'"
+    EG8145V5:
+      color: "'#ff5733'"
+      filter: VirtualParameters.KnownProductClass = "EG8145V5"
+      label: "'EG8145V5'"
+    EG8245H5:
+      color: "'#28a745'"
+      filter: VirtualParameters.KnownProductClass = "EG8245H5"
+      label: "'EG8245H5'"
+    HG8120C:
+      color: "'#17a2b8'"
+      filter: VirtualParameters.KnownProductClass = "HG8120C"
+      label: "'HG8120C'"
+    HG8145V5:
+      color: "'#ff8c00'"
+      filter: VirtualParameters.KnownProductClass = "HG8145V5"
+      label: "'HG8145V5'"
+    HG8321R:
+      color: "'#ffc107'"
+      filter: VirtualParameters.KnownProductClass = "HG8321R"
+      label: "'HG8321R'"
+    MQ220:
+      color: "'#004a37'"
+      filter: VirtualParameters.KnownProductClass = "MQ220"
+      label: "'MQ220'"
+    TOTOLINK_N200RE:
+      color: "'#00214a'"
+      filter: VirtualParameters.KnownProductClass = "TOTOLINK_N200RE"
+      label: "'TOTOLINK_N200RE'"
+    TOTOLINK_N300RT:
+      color: "'#00215a'"
+      filter: VirtualParameters.KnownProductClass = "TOTOLINK_N300RT"
+      label: "'TOTOLINK_N300RT'"
+    TOTOLINK_N355RT:
+      color: "'#00214f'"
+      filter: VirtualParameters.KnownProductClass = "TOTOLINK_N355RT"
+      label: "'TOTOLINK_N355RT'"
+    ZXHN-F450:
+      color: "'#e0a102'"
+      filter: VirtualParameters.KnownProductClass = "ZXHN F450(EPON ONU)"
+      label: "'ZXHN F450(EPON ONU)'"
+    HG6145D2:
+      color: "'#00bfff'"
+      filter: VirtualParameters.KnownProductClass = "HG6145D2"
+      label: "'HG6145D2'"
+    Other:
+      color: "'#ffffff'"
+      filter: VirtualParameters.KnownProductClass = "Other"
+      label: "'Other'"

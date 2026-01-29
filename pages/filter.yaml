@@ -1,0 +1,23 @@
+- label: "'Serial number'"
+  parameter: DeviceID.SerialNumber
+  type: "'string'"
+- label: "'Product class'"
+  parameter: DeviceID.ProductClass
+  type: "'string'"
+- label: "'Access Type'"
+  parameter: InternetGatewayDevice.WANDevice.1.WANCommonInterfaceConfig.WANAccessType
+  type: "'string'"
+- label: "'PPP Username'"
+  parameter: VirtualParameters.PPPUsername
+  type: "'string'"
+- label: "'PPP IP'"
+  parameter: VirtualParameters.PPPExtIPAddress
+  type: "'string'"
+- label: "'Software Version'"
+  parameter: InternetGatewayDevice.DeviceInfo.SoftwareVersion
+  type: "'string'"
+- label: "'Hardware Version'"
+  parameter: InternetGatewayDevice.DeviceInfo.HardwareVersion
+  type: "'string'"
+- label: "'Tag'"
+  type: "'tag'"
